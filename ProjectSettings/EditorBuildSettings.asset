@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Teach-Scene1.unity
-    guid: 9ee4d6eab0061024594ecfeb1f2bf242
+    path: Assets/Scenes/MenuScene.unity
+    guid: 093361f64fb6dc4419fa98d9a9bfb602
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/SewerScene.unity
+    guid: 5bc9f057dcbd0604eb7c90f98b2a63c5
+  - enabled: 1
+    path: Assets/Scenes/Level2Scene.unity
+    guid: 6e2ed6cfff252b5459a80d08c77f29c9
   m_configObjects: {}
