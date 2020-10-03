@@ -1,14 +1,14 @@
-﻿using UnityEngine.SceneManagement;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class GameController 
 {
-    private static bool can_move=false;
-
+    private static bool can_move=true;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void GameStart()
     {
         Debug.Log("GameStart!");
+        SceneManager.LoadScene(2);
     }
 
     public static void LoadScene(int sceneNumber)
@@ -22,15 +22,27 @@ public static class GameController
         return can_move;
     }
 
-    public static void AnyDownStart()
+    public static void SetCanMove(bool canMove)
     {
-        //................
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            GameObject.Find("TrackCamera").SetActive(false);
-        }
-        
-        can_move = true;
-
+        can_move = canMove;
     }
+
+    public static int GetCharacterNumber()
+    {
+        int characterNumber=0;
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 1:
+                characterNumber = 1;
+                break;
+            case 2:
+                characterNumber = 2;
+                break;
+            default:
+                break;
+        }
+        return characterNumber;
+    }
+
+    
 }

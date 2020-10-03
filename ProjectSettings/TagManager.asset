@@ -59,6 +59,9 @@ TagManager:
   - name: Foreground
     uniqueID: 3618370251
     locked: 0
+  - name: Hint
+    uniqueID: 2328181693
+    locked: 0
   - name: UI
     uniqueID: 4233573043
     locked: 0

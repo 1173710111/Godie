@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 public class DogMoving : MonoBehaviour
@@ -11,23 +12,23 @@ public class DogMoving : MonoBehaviour
     [Tooltip("地面所在层")]
     public LayerMask groundLayer;
     //人物中心与地面的垂直距离
-    private float distance = 1.204f;
+    private float distance;
 
     //此时狗子是不是在空中
     private bool is_inAir=false;
     private bool is_lookingRight = false;
     private bool is_moving = false;
     private Vector3 target_pos;
+    private bool lookRight;
 
     void Start()
     {
-        
+        distance=transform.position.y-GameObject.Find("GroundSurface").transform.position.y+0.05f;
     }
 
     private void LateUpdate()
     {
         RaycastHit2D hitInfo=Physics2D.Raycast(transform.position,Vector2.down,distance,groundLayer);
-        Debug.DrawRay(transform.position,Vector3.down*distance, Color.green);
         if (hitInfo.collider == null)
         {
             is_inAir = true;
@@ -40,23 +41,19 @@ public class DogMoving : MonoBehaviour
         {
             Vector3 offset = target_pos - transform.position;
             #region 水平位移
-            if (offset.x >= 0f)
-            {
-                LookRight();
-                //transform.Translate(new Vector3(Vector3.right.x * dog_speed_x * Time.deltaTime, 0f, 0f));
-                GetComponent<Rigidbody2D>().velocity = new Vector2(dog_speed_x, 0f);
-            }
-            else
-            {
-                LookLeft();
-                //transform.Translate(new Vector3(Vector3.left.x * dog_speed_x * Time.deltaTime , 0f, 0f));
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-dog_speed_x, 0f);
-            }
             if (offset.x < 0.1f&&offset.x>-0.1f)
-            {   
-                transform.position = new Vector3(target_pos.x,transform.position.y,transform.position.z);
-                is_moving = false;
+            {
+                IsMoving(false);
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
+                return;
+            }
+            if (offset.x > 0)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(dog_speed_x, 0f);
+            }else if (offset.x < 0)
+            {
+                
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-dog_speed_x, 0f);
             }
             #endregion
         }
@@ -64,28 +61,36 @@ public class DogMoving : MonoBehaviour
 
     private void MoveTo(Vector3 target_position)
     {
-        this.is_moving = true;
+        IsMoving(true);
         this.target_pos = target_position;
+        if (target_position.x > transform.position.x)
+        {
+            LookRight();
+        }
+        else if (target_position.x < transform.position.x)
+        {
+            LookLeft();
+        }
     }
 
     private void JumpTo(Vector3 target_position)
     {
         if (!is_inAir)
         {
-            is_moving = false;
+            
+            IsMoving(false);
             if (target_position.x > transform.position.x)
             {
-                //GetComponent<Rigidbody2D>().AddForce(new Vector2(70f * dog_speed_x, 100f * dog_speed_y));
+                LookRight();
                 GetComponent<Rigidbody2D>().velocity = new Vector2(dog_speed_x, dog_speed_y);
             }
             else if (target_position.x < transform.position.x)
             {
-                //GetComponent<Rigidbody2D>().AddForce(new Vector2(-70f * dog_speed_x, 100f * dog_speed_y));
+                LookLeft();
                 GetComponent<Rigidbody2D>().velocity = new Vector2(-dog_speed_x, dog_speed_y);
             }
             else
             {
-                //GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 100f * dog_speed_y));
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0f, dog_speed_y);
             }
         
@@ -124,4 +129,11 @@ public class DogMoving : MonoBehaviour
             spriteTransform.rotation = look;
         }
     }
+
+    private void IsMoving(bool isMoving)
+    {
+        is_moving = isMoving;
+        GetComponentInChildren<Animator>().SetBool("IsMoving", isMoving);
+    }
+
 }

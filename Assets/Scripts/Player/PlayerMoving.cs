@@ -7,7 +7,7 @@ public class PlayerMoving : MonoBehaviour
     [Tooltip("水平移动速度")]
     public float m_speed;
 
-    private bool is_lookingRight = true;
+    private bool is_lookingRight = false;
     //是否与楼梯接触，0表示未接触，1表示上楼梯，2表示下楼梯;
     private int is_onStairs = 0;
     //是否与狗子接触，0表示未接触，1表示要摸狗子，2表示要喂罐头；
@@ -60,6 +60,12 @@ public class PlayerMoving : MonoBehaviour
         }
         transform.Translate(Vector3.right * m_speed * Time.deltaTime);
     }
+
+    private void IsMoving(bool isMoving)
+    {
+        GetComponentInChildren<Animator>().SetBool("IsMoving", isMoving);
+    }
+
 
     /// <summary>
     /// 当玩家按下交互键时调用此方法执行相应操作

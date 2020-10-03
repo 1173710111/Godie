@@ -63,9 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Application\AnimationController.cs" />
+    <Compile Include="Assets\Scripts\Application\CameraAndCharacterController.cs" />
     <Compile Include="Assets\Scripts\Application\GameController.cs" />
     <Compile Include="Assets\Scripts\Application\GameStart.cs" />
+    <Compile Include="Assets\Scripts\Player\AutoFollow.cs" />
     <Compile Include="Assets\Scripts\Player\ChairMoving.cs" />
     <Compile Include="Assets\Scripts\Player\DogMoving.cs" />
     <Compile Include="Assets\Scripts\Player\InputController.cs" />
