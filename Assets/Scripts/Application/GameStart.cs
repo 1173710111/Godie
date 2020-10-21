@@ -12,11 +12,15 @@ public class GameStart : MonoBehaviour
 
     private bool waitFinished = false;
     private GameObject newAnyDownStart;
-    private GameObject newLeftButton;
-    private GameObject newRightButton;
     private void Awake()
     {
-        Invoke("CanStart", wait_time);
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            InputController.BanButton(true);
+            InputController.BanMouse(true);
+            Invoke("CanStart", wait_time);
+        }
+        
     }
 
     private void CanStart()
@@ -25,8 +29,10 @@ public class GameStart : MonoBehaviour
         {
             GameObject.Find("TrackCamera").SetActive(false);
             newAnyDownStart = Instantiate(anyDownStart, new Vector3(playerStartPosition.position.x, playerStartPosition.position.y -2f, playerStartPosition.position.z), Quaternion.identity);
-            }
-        waitFinished = true;
+            Invoke("CanMove", 0.2f);
+            waitFinished = true;
+        }
+        
     }
     private void LateUpdate()
     {
@@ -36,17 +42,18 @@ public class GameStart : MonoBehaviour
             if (InputController.anyDown)
             {
                 Destroy(newAnyDownStart);
+                leftButton = Instantiate(leftButton, new Vector3(playerStartPosition.position.x - 1.5f, playerStartPosition.position.y - 2f, playerStartPosition.position.z), Quaternion.identity);
+                rightButton = Instantiate(rightButton, new Vector3(playerStartPosition.position.x + 1.5f, playerStartPosition.position.y - 2f, playerStartPosition.position.z), Quaternion.identity);
+                leftButton.transform.parent = player.transform;
+                rightButton.transform.parent = player.transform;
                 waitFinished = false;
-                Invoke("CanMove", 0.2f);
             }
         }
     }
-    private void CanMove()
+    void CanMove()
     {
-        GameController.SetCanMove(true);
-        leftButton = Instantiate(leftButton, new Vector3(playerStartPosition.position.x - 1.5f, playerStartPosition.position.y - 2f, playerStartPosition.position.z), Quaternion.identity);
-        rightButton = Instantiate(rightButton, new Vector3(playerStartPosition.position.x + 1.5f, playerStartPosition.position.y - 2f, playerStartPosition.position.z), Quaternion.identity);
-        leftButton.transform.parent = player.transform;
-        rightButton.transform.parent = player.transform;
+        InputController.BanButton(false);
+        InputController.BanMouse(false);
+        
     }
 }

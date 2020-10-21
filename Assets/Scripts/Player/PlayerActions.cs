@@ -9,26 +9,28 @@ public class PlayerActions : MonoBehaviour
     public int m_state;
 
     public GameObject CameraController;
-
+    //用来判断用户是否有交互键的输入；
+    private bool interaction;
+    public bool GetInteraction()
+    {
+        return interaction;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        interaction = false;
         InputController.GetKey();
-        if (!GameController.GetCanMove())
-        {
-            return;
-        }
-
+        
         #region 切换视角
-        if (GameController.GetCharacterNumber() == 2)
+        if (CameraController!=null&&GameController.GetCharacterNumber() == 2)
         {
+            
             int mainCamera = CameraController.GetComponent<CameraAndCharacterController>().mainCamera;
             if (mainCamera == 0 && InputController.mouseDown)
             {
@@ -43,10 +45,36 @@ public class PlayerActions : MonoBehaviour
         }
         #endregion
 
+        #region 虚弱的人的移动
+        if (m_state == 0)
+        {
+            if (InputController.left)
+            {
+                gameObject.GetComponent<PoorManMoving>().SendMessage("MoveLeft");
+            }
+            else if (InputController.right)
+            {
+                gameObject.GetComponent<PoorManMoving>().SendMessage("MoveRight");
+            }
+            else if (InputController.interaction)
+            {
+                interaction = true;
+                gameObject.GetComponent<PoorManMoving>().SendMessage("StopMoving");
+                return;
+            }
+            else
+            {
+                gameObject.GetComponent<PoorManMoving>().SendMessage("StopMoving");
+                return;
+            }
+        }
+        #endregion
+
         #region 轮椅的移动
         if (m_state == 1)
         {
             gameObject.GetComponent<ChairMoving>().enabled = true;
+            
         }
         #endregion
 
@@ -66,8 +94,8 @@ public class PlayerActions : MonoBehaviour
             }
             else if (InputController.interaction)
             {
+                interaction = true;
                 gameObject.GetComponent<PlayerMoving>().SendMessage("IsMoving", false);
-                gameObject.GetComponent<PlayerMoving>().SendMessage("Interaction");
                 return;
             }
             else

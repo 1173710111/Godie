@@ -11,8 +11,6 @@ public class AutoFollow : MonoBehaviour
     public float follow_distance;
     [Tooltip("距离多远时停止跟随")]
     public float stop_distance;
-    [Tooltip("跟随速度")]
-    public float velocity;
     private bool is_following;
 
 
@@ -31,13 +29,13 @@ public class AutoFollow : MonoBehaviour
         }
         if (Math.Abs(offset.x) <= (stop_distance + 0.1) && is_following)
         {
-            gameObject.GetComponent<DogMoving>().SendMessage("IsMoving", false);
+            gameObject.GetComponent<DogMoving>().SendMessage("StopMoving");
             is_following = false;
         }
         #region 跟随某物体移动
         if (is_following)
         {
-            gameObject.GetComponent<DogMoving>().SendMessage("IsMoving", true);
+            gameObject.GetComponent<DogMoving>().SendMessage("StartMoving");
             Vector3 target;
             if (offset.x > 0)
             {

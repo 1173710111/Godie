@@ -7,9 +7,20 @@ public static class InputController
     private static KeyCode[] leftButtons= { KeyCode.A, KeyCode.LeftArrow };
     private static KeyCode[] rightButtons = { KeyCode.D, KeyCode.RightArrow };
     private static KeyCode[] interactionButtons = { KeyCode.W, KeyCode.UpArrow };
-    
+    private static bool button_ban = false;
+    private static bool mouse_ban = false;
     public static Vector3 hitPoint;
     public static bool interaction, left, right,mouseDown,right_mouseDown,left_mouseDown,buttonDown,anyDown;
+
+    public static void BanButton(bool flag)
+    {
+        button_ban = flag;
+    }
+
+    public static void BanMouse(bool flag)
+    {
+        mouse_ban = flag;
+    }
 
     public static void GetKey()
     {
@@ -18,29 +29,35 @@ public static class InputController
         anyDown = false;
         left_mouseDown = false;
         right_mouseDown = false;
-
-        interaction = GetInteractionKey();
-        left = GetLeftKey();
-        right = GetRightKey();
-
-        if (left && right)
+        left = false;
+        right = false;
+        interaction = false;
+        if (!button_ban)
         {
-            left = false;
-            right = false;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            left_mouseDown = true;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            right_mouseDown = true;
-        }
+            interaction = GetInteractionKey();
+            left = GetLeftKey();
+            right = GetRightKey();
 
+            if (left && right)
+            {
+                left = false;
+                right = false;
+            }
+        }
+        if (!mouse_ban)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                left_mouseDown = true;
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                right_mouseDown = true;
+            }
+        }
         buttonDown = left | right | interaction;
         mouseDown = left_mouseDown | right_mouseDown;
         anyDown = mouseDown | buttonDown;
-
         if (mouseDown)
         {
             Vector3 playerWordDir = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0f));

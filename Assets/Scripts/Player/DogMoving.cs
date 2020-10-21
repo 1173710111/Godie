@@ -43,7 +43,7 @@ public class DogMoving : MonoBehaviour
             #region 水平位移
             if (offset.x < 0.1f&&offset.x>-0.1f)
             {
-                IsMoving(false);
+                StopMoving();
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
                 return;
             }
@@ -61,7 +61,7 @@ public class DogMoving : MonoBehaviour
 
     private void MoveTo(Vector3 target_position)
     {
-        IsMoving(true);
+        StartMoving();
         this.target_pos = target_position;
         if (target_position.x > transform.position.x)
         {
@@ -78,7 +78,7 @@ public class DogMoving : MonoBehaviour
         if (!is_inAir)
         {
             
-            IsMoving(false);
+            StopMoving();
             if (target_position.x > transform.position.x)
             {
                 LookRight();
@@ -130,10 +130,24 @@ public class DogMoving : MonoBehaviour
         }
     }
 
-    private void IsMoving(bool isMoving)
+    public void StopMoving()
     {
-        is_moving = isMoving;
-        GetComponentInChildren<Animator>().SetBool("IsMoving", isMoving);
+        is_moving = false;
+        GetComponentInChildren<Animator>().SetBool("IsMoving", false);
     }
 
+    public void StartMoving()
+    {
+        is_moving = true;
+        GetComponentInChildren<Animator>().SetBool("IsMoving", true);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.contacts[0].normal.x==-1||collision.contacts[0].normal.x==1)
+        {
+            StopMoving();
+        }
+            
+    }
 }

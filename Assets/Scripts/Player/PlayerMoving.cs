@@ -8,24 +8,15 @@ public class PlayerMoving : MonoBehaviour
     public float m_speed;
 
     private bool is_lookingRight = false;
-    //是否与楼梯接触，0表示未接触，1表示上楼梯，2表示下楼梯;
-    private int is_onStairs = 0;
-    //是否与狗子接触，0表示未接触，1表示要摸狗子，2表示要喂罐头；
+
+/*    //是否与狗子接触，0表示未接触，1表示要摸狗子，2表示要喂罐头；
     private int is_touchDog = 0;
-    //切换场景,0表示无动作，i表示待加载的场景；
-    private int is_changeScene = 0;
     //开开关/关开关，0表示无动作，1表示开开关，2表示关开关；
     private int is_switch = 0;
     //捡起字条，0表示无动作，1表示可以捡起字条；
     private bool is_pickUpPaper = false;
     //查看墙上刻字，0表示无动作，1表示可以查看；
-    private bool is_checkWall = false;
-
-
-    void Start()
-    {
-
-    }
+    private bool is_checkWall = false;*/
 
     private void MoveLeft()
     {
@@ -67,28 +58,13 @@ public class PlayerMoving : MonoBehaviour
     }
 
 
-    /// <summary>
+   /* /// <summary>
     /// 当玩家按下交互键时调用此方法执行相应操作
     /// </summary>
     private void Interaction()
     {
-        #region 上下楼梯
-        switch (is_onStairs)
-        {
-            case 0:
-                break;
-            case 1:
-                #region 上楼梯
-                GameController.LoadScene(is_changeScene);
-                #endregion
-                break;
-            case 2:
-                #region 下楼梯
-                #endregion
-                break;
-            default:
-                break;
-        }
+        #region 切换场景
+       
         #endregion
 
         #region 摸狗头/喂罐头
@@ -106,13 +82,6 @@ public class PlayerMoving : MonoBehaviour
                 break;
             default:
                 break;
-        }
-        #endregion
-
-        #region 切换场景
-        if (is_changeScene!=0)
-        {
-            GameController.LoadScene(is_changeScene);
         }
         #endregion
 
@@ -146,16 +115,6 @@ public class PlayerMoving : MonoBehaviour
         }
         #endregion
     }
-    /// <summary>
-    /// 当player走到楼梯口时，调用该方法传递信息
-    /// </summary>
-    /// <param name='is_onStair'>
-    /// 是否与楼梯接触，0表示未接触，1表示上楼梯，2表示下楼梯;
-    /// </param>
-    public void PI_ChangeOnStairs(int is_onStair)
-    {
-        this.is_onStairs = is_onStair;
-    }
 
     /// <summary>
     /// 当player走到小狗旁边时，调用该方法传递信息
@@ -168,13 +127,6 @@ public class PlayerMoving : MonoBehaviour
         this.is_touchDog = is_touchDog;
     }
 
-    /// <summary>
-    /// 当player走到门前时，调用该方法传递信息
-    /// </summary>
-    public void PI_ChangeScene(int scene)
-    {
-        is_changeScene = scene;
-    }
 
     /// <summary>
     /// 当player走到开关时，调用该方法传递信息
@@ -187,9 +139,9 @@ public class PlayerMoving : MonoBehaviour
     /// <summary>
     /// 当player走到字条时，调用该方法传递信息
     /// </summary>
-    public void PI_PickUpPaper(bool flag)
+    public void PI_PickUpPaper()
     {
-        is_pickUpPaper = flag;
+        
     }
 
     /// <summary>
@@ -198,5 +150,5 @@ public class PlayerMoving : MonoBehaviour
     public void PI_CheckWall(bool flag)
     {
         is_checkWall = flag;
-    }
+    }*/
 }

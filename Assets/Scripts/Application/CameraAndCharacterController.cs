@@ -22,7 +22,7 @@ public class CameraAndCharacterController : MonoBehaviour
 
     private void LookAtMan()
     {
-        camera_man.SetActive(true);
+        camera_man.SetActive(true); 
         camera_dog.SetActive(false);
         character_man.GetComponent<PlayerActions>().enabled = true;
         character_dog.GetComponent<PlayerActions>().enabled = false;

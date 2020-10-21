@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SewerScene.unity
     guid: 5bc9f057dcbd0604eb7c90f98b2a63c5
   - enabled: 1
-    path: Assets/Scenes/Level2Scene.unity
+    path: Assets/Scenes/Level2Scene-teach.unity
     guid: 6e2ed6cfff252b5459a80d08c77f29c9
+  - enabled: 1
+    path: Assets/Scenes/Level3Scene-teach.unity
+    guid: e76ac312fdd7d1c4690538a98e5c0dfb
+  - enabled: 1
+    path: Assets/Scenes/Level2Scene.unity
+    guid: 62acd6586be53be49a5d0842dd042f5a
   m_configObjects: {}
