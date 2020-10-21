@@ -6,13 +6,17 @@ using System;
 public class ItemsData : MonoBehaviour
 {
     public Sprite GuanTou;
+    public Sprite PingZhuangShui;
+    public Sprite ShouJu1;
 
     [NonSerialized] public List<Item> items;
 
     void Awake()
     {
         items = new List<Item>();
-        items.Add(new Item("罐头","",GuanTou));
+        items.Add(new Item("罐头","罐头",GuanTou));
+        items.Add(new Item("瓶装水", "瓶装水", PingZhuangShui));
+        items.Add(new Item("收据1", "收据1", ShouJu1));
     }
 
     public Sprite GetSpriteByItemName(string name)
@@ -22,6 +26,16 @@ public class ItemsData : MonoBehaviour
             if (String.Compare(name,item.name) == 0) return item.sprite;
         }
         Debug.LogError("No Found: Item's sprite by name");
+        return null;
+    }
+
+    public Item GetItemByItemName(string name)
+    {
+        foreach (Item item in items)
+        {
+            if (String.Compare(name, item.name) == 0) return item;
+        }
+        Debug.LogError("No Found: Item sprite by name");
         return null;
     }
 }

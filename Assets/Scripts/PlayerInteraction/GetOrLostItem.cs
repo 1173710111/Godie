@@ -61,7 +61,8 @@ public class GetOrLostItem : MonoBehaviour
         transform.GetComponent<CanvasGroup>().alpha = 0;
         transform.GetComponent<RectTransform>().position = new Vector3(character.position.x + xOffset, character.position.y + yOffset + offset, character.position.z);
         float deltaOffset = offset * Time.deltaTime / (showTime/2f);
-        float deltaAlpha = alpha * Time.deltaTime / (showTime/2f); 
+        float deltaAlpha = alpha * Time.deltaTime / (showTime/2f);
+        
         while (true) 
         {
             transform.GetComponent<CanvasGroup>().alpha += deltaAlpha;
@@ -70,9 +71,10 @@ public class GetOrLostItem : MonoBehaviour
             transform.GetComponent<RectTransform>().position = new Vector3(character.position.x + xOffset, character.position.y + yOffset + offset - recentOffset, character.position.z);
             if (transform.GetComponent<RectTransform>().position.y < character.position.y + yOffset) transform.GetComponent<RectTransform>().position = new Vector3(character.position.x + xOffset, character.position.y + yOffset, character.position.z) ;
             if (transform.GetComponent<CanvasGroup>().alpha == alpha && transform.GetComponent<RectTransform>().position.y == character.position.y + yOffset) break;
+            
             yield return 0;
         }
-
+        Debug.Log(transform.Find("道具").GetComponent<Image>().sprite.name);
         //完全显示时保持不变
         float timer = 0f;
         while (timer<holdTime)
@@ -81,6 +83,7 @@ public class GetOrLostItem : MonoBehaviour
             timer += Time.deltaTime;
             yield return 0;
         }
+        
 
         //淡出
         recentOffset = 0f;

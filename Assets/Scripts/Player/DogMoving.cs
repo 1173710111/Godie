@@ -144,7 +144,7 @@ public class DogMoving : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.contacts[0].normal.x==-1||collision.contacts[0].normal.x==1)
+        if (collision.contacts[0].normal.x>=-1&&collision.contacts[0].normal.x<=1)
         {
             StopMoving();
         }

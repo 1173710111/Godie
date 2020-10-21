@@ -73,14 +73,32 @@ public class PlayerActions : MonoBehaviour
         #region 轮椅的移动
         if (m_state == 1)
         {
-            gameObject.GetComponent<ChairMoving>().enabled = true;
-            
+            if (InputController.left)
+            {
+                gameObject.GetComponent<ChairMoving>().SendMessage("MoveLeft");
+            }
+            else if (InputController.right)
+            {
+                gameObject.GetComponent<ChairMoving>().SendMessage("MoveRight");
+            }
+            else if (InputController.interaction)
+            {
+                interaction = true;
+                gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
+                return;
+            }
+            else
+            {
+                gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
+                return;
+            }
+
         }
         #endregion
 
 
         #region 健康人的移动
-        else if (m_state == 2)
+        if (m_state == 2)
         {
             if (InputController.left)
             {
@@ -122,6 +140,7 @@ public class PlayerActions : MonoBehaviour
                 if (InputController.left_mouseDown)
                 {
                     GetComponent<DogMoving>().SendMessage("MoveTo", target);
+                    interaction = true;
                 }
             }
         }

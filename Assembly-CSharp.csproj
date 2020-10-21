@@ -65,9 +65,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Application\Bubble.cs" />
     <Compile Include="Assets\Scripts\Application\CameraAndCharacterController.cs" />
+    <Compile Include="Assets\Scripts\Application\DelayToInvoke.cs" />
     <Compile Include="Assets\Scripts\Application\GameController.cs" />
     <Compile Include="Assets\Scripts\Application\GameStart.cs" />
+    <Compile Include="Assets\Scripts\Application\ShowAndHide.cs" />
+    <Compile Include="Assets\Scripts\Application\TrackCameraController.cs" />
     <Compile Include="Assets\Scripts\Base\ItemsData.cs" />
+    <Compile Include="Assets\Scripts\Object\FlickerLight.cs" />
     <Compile Include="Assets\Scripts\Player\AutoFollow.cs" />
     <Compile Include="Assets\Scripts\Player\ChairMoving.cs" />
     <Compile Include="Assets\Scripts\Player\DogMoving.cs" />
@@ -78,9 +82,11 @@
     <Compile Include="Assets\Scripts\PlayerInteraction\ChangeSceneTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerInteraction\GetOrLostItem.cs" />
     <Compile Include="Assets\Scripts\PlayerInteraction\InteractionTriggerDog.cs" />
-    <Compile Include="Assets\Scripts\PlayerInteraction\Reminding.cs" />
+    <Compile Include="Assets\Scripts\PlayerInteraction\InteractionTriggerMan.cs" />
+    <Compile Include="Assets\Scripts\PlayerInteraction\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Button\ButtonOverride.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Button\ButtonParameter.cs" />
+    <Compile Include="Assets\Scripts\UI\Basic\ShowAndHideUI.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Text\TextSpacing.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Toggle\ToggledObjects.cs" />
     <Compile Include="Assets\Scripts\UI\HintUI\BubbleHintUI.cs" />

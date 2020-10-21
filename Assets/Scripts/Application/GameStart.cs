@@ -20,7 +20,6 @@ public class GameStart : MonoBehaviour
             InputController.BanMouse(true);
             Invoke("CanStart", wait_time);
         }
-        
     }
 
     private void CanStart()
