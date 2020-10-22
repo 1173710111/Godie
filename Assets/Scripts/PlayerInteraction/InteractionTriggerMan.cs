@@ -90,11 +90,10 @@ public class InteractionTriggerMan : MonoBehaviour
                         break;
                     case 1:
                         GetSomething("罐头");
-                        //Invoke("LoadSence", 3f);
                         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                         {
                             GameController.LoadScene(4);
-                        }, 8f));
+                        }, 4f));
                         break;
                     case 2:
                         break;
@@ -143,24 +142,20 @@ public class InteractionTriggerMan : MonoBehaviour
         getOrLostItem.xOffset = 0f;
         getOrLostItem.yOffset = 2.6f;
         gameObject.transform.GetChild(1).GetComponent<ShowAndHide>().Hide(2f);
-        getOrLostItem.GetShow(name, 0.5f, 1f, 1f, 1f);
+        InputController.BanButton(true);
+        getOrLostItem.GetShow(name, 1f, 1f, 1f,delegate(){
+                Destroy(getOrLostItem);
+                InputController.BanButton(false);
+        }, 1f);
         Destroy(remind);
-        //Invoke("Finished", 1f);
-        StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
-        {
-            transform.GetChild(1).gameObject.SetActive(false);
-            getOrLostItem.gameObject.SetActive(false);
-        }, 1f));
-
         if (interaction_type == 3)
         {
             CameraAndCharacterController cameraController = GameObject.Find("CameraAndCharacterController").GetComponent<CameraAndCharacterController>();
-            cameraController.character_man.GetComponent<ShowAndHide>().Hide(1f);
-            //Invoke("ShowChairMan", 1f);
+            cameraController.character_man.GetComponent<ShowAndHide>().Hide(2f);
             StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
             {
                 ShowChairMan();
-            }, 1f));
+            }, 2f));
         }
 
 
@@ -171,38 +166,22 @@ public class InteractionTriggerMan : MonoBehaviour
         CameraAndCharacterController cameraController = GameObject.Find("CameraAndCharacterController").GetComponent<CameraAndCharacterController>();
         GameObject characters = GameObject.Find("scene2-character");
         GameObject character_chair = characters.transform.Find("Character-chair").gameObject;
-        character_chair.SetActive(true);
-        character_chair.GetComponent<ShowAndHide>().Show(1f);
-        cameraController.character_man = character_chair;
-        GameObject.Find("Character-dog-growup").GetComponent<AutoFollow>().followed=character_chair;
-        GameObject cameras = GameObject.Find("scene2-camera");
-        GameObject camera_chair = cameras.transform.Find("CM vcam3").gameObject;
-        cameraController.camera_man.SetActive(false);
-        camera_chair.SetActive(true);
-        cameraController.camera_man = camera_chair;
-        Physics2D.IgnoreCollision(character_chair.GetComponent<Collider2D>(), cameraController.character_dog.GetComponent<Collider2D>(), true);
+        character_chair.GetComponent<ShowAndHide>().Show(2f);
+        StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
+        {
+            cameraController.character_man = character_chair;
+            GameObject.Find("Character-dog-growup").GetComponent<AutoFollow>().followed = character_chair;
+            GameObject cameras = GameObject.Find("scene2-camera");
+            GameObject camera_chair = cameras.transform.Find("CM vcam3").gameObject;
+            cameraController.camera_man.SetActive(false);
+            camera_chair.SetActive(true);
+            cameraController.camera_man = camera_chair;
+            Physics2D.IgnoreCollision(character_chair.GetComponent<Collider2D>(), cameraController.character_dog.GetComponent<Collider2D>(), true);
+
+        }, 2f));
         
     }
 
-   /* private void Cut()
-    {
-        GameObject.Find("漏电的电线").GetComponent<Animator>().SetTrigger("IsCut");
-        GameObject.Find("ElectricLine").SetActive(false);
-        Destroy(remind);
-    }
-
-    private void Back()
-    {
-        GameObject.Find("TrackCameraController").GetComponent<TrackCameraController>().Finished();
-        Invoke("CanMove", 2.4f);
-        
-    }
-
-    private void LoadSence()
-    {
-        GameController.LoadScene(4);
-    }*/
-    
     private void CanMove()
     {
         InputController.BanButton(false);

@@ -68,6 +68,8 @@
     <Compile Include="Assets\Scripts\Application\DelayToInvoke.cs" />
     <Compile Include="Assets\Scripts\Application\GameController.cs" />
     <Compile Include="Assets\Scripts\Application\GameStart.cs" />
+    <Compile Include="Assets\Scripts\Application\MouseCursorChange.cs" />
+    <Compile Include="Assets\Scripts\Application\MouseCursorController.cs" />
     <Compile Include="Assets\Scripts\Application\ShowAndHide.cs" />
     <Compile Include="Assets\Scripts\Application\TrackCameraController.cs" />
     <Compile Include="Assets\Scripts\Base\ItemsData.cs" />

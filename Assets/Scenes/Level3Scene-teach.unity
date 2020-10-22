@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5193,15 +5193,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1173613308869458101, guid: d4f19a31b2c655145ba23c95d1b13aac,
+    - target: {fileID: 1421294306247901410, guid: d4f19a31b2c655145ba23c95d1b13aac,
         type: 3}
-      propertyPath: interaction_type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1173613309854150056, guid: d4f19a31b2c655145ba23c95d1b13aac,
-        type: 3}
-      propertyPath: interaction_type
-      value: 2
+      propertyPath: m_LocalPosition.x
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 4341318773644690934, guid: d4f19a31b2c655145ba23c95d1b13aac,
         type: 3}
@@ -5263,11 +5258,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4598042033262465599, guid: d4f19a31b2c655145ba23c95d1b13aac,
-        type: 3}
-      propertyPath: get_object
-      value: 
-      objectReference: {fileID: 4341318773466308602}
     - target: {fileID: 5819963883772338612, guid: d4f19a31b2c655145ba23c95d1b13aac,
         type: 3}
       propertyPath: camera_man
@@ -5290,12 +5280,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4f19a31b2c655145ba23c95d1b13aac, type: 3}
---- !u!1 &4341318773466308602 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1438264065510372977, guid: d4f19a31b2c655145ba23c95d1b13aac,
-    type: 3}
-  m_PrefabInstance: {fileID: 4341318773466308601}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4588871736875061637
 PrefabInstance:
   m_ObjectHideFlags: 0

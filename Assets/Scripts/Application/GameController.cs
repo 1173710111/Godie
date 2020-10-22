@@ -7,7 +7,7 @@ public static class GameController
     public static void GameStart()
     {
         Debug.Log("GameStart!");
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(1);
     }
 
     public static void LoadScene(int sceneNumber)

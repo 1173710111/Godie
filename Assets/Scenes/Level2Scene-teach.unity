@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1806,7 +1806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257044441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.29, y: -1.0800002, z: -10}
+  m_LocalPosition: {x: -5.29, y: -1.0700002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2868,6 +2868,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3257157771074768102, guid: f91d609411c1d7d4f9089211b70bb9ba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257157771277902915, guid: f91d609411c1d7d4f9089211b70bb9ba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3456626928646209671, guid: f91d609411c1d7d4f9089211b70bb9ba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2951,7 +2961,7 @@ PrefabInstance:
     - target: {fileID: 4226151013705323778, guid: 3e54f054b68143f4993ecdbec8b8a39a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.51
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4226151013705323778, guid: 3e54f054b68143f4993ecdbec8b8a39a,
         type: 3}
@@ -3017,11 +3027,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: scene2-teach-camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3378363248057941080, guid: 55db73b4e732e324e802246377ff06d3,
+        type: 3}
+      propertyPath: m_FollowOffset.y
+      value: 2.26
+      objectReference: {fileID: 0}
     - target: {fileID: 3378363249154448772, guid: 55db73b4e732e324e802246377ff06d3,
         type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 3065917042610901395}
+    - target: {fileID: 3378363249154448775, guid: 55db73b4e732e324e802246377ff06d3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.1640756
+      objectReference: {fileID: 0}
     - target: {fileID: 7780537121503028199, guid: 55db73b4e732e324e802246377ff06d3,
         type: 3}
       propertyPath: m_LocalPosition.x
