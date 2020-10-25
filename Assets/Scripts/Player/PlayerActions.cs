@@ -11,6 +11,8 @@ public class PlayerActions : MonoBehaviour
     public GameObject CameraController;
     //用来判断用户是否有交互键的输入；
     private bool interaction;
+    AudioSourceController audioSourceController;
+
     public bool GetInteraction()
     {
         return interaction;
@@ -87,6 +89,20 @@ public class PlayerActions : MonoBehaviour
                 gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
                 return;
             }
+            else if (InputController.rush)
+            {
+                Skill rushSkill = GameObject.Find("技能UI/Canvas/Panel").transform.Find("技能1").GetComponent<Skill>();
+                if (rushSkill.IsAble())
+                {
+                    if (!rushSkill.isCD)
+                    {
+                        rushSkill.UseSkill();
+                        if (audioSourceController == null) audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+                        audioSourceController.Play("冲刺", transform);
+                        gameObject.GetComponent<ChairMoving>().SendMessage("Rush");
+                    }
+                }
+            }
             else
             {
                 gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
@@ -146,5 +162,4 @@ public class PlayerActions : MonoBehaviour
         }
         #endregion
     }
-
 }

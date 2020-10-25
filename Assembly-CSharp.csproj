@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{93317405-EFA3-E455-6F84-99B87A611BAA}</ProjectGuid>
+    <ProjectGuid>{C5C8DBAF-1341-D6B1-C048-A4D7CC586A38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -72,6 +72,11 @@
     <Compile Include="Assets\Scripts\Application\MouseCursorController.cs" />
     <Compile Include="Assets\Scripts\Application\ShowAndHide.cs" />
     <Compile Include="Assets\Scripts\Application\TrackCameraController.cs" />
+    <Compile Include="Assets\Scripts\Application\Win32Help.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioDataManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioSourceController.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioSourcesManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioStart.cs" />
     <Compile Include="Assets\Scripts\Base\ItemsData.cs" />
     <Compile Include="Assets\Scripts\Object\FlickerLight.cs" />
     <Compile Include="Assets\Scripts\Player\AutoFollow.cs" />
@@ -85,15 +90,25 @@
     <Compile Include="Assets\Scripts\PlayerInteraction\GetOrLostItem.cs" />
     <Compile Include="Assets\Scripts\PlayerInteraction\InteractionTriggerDog.cs" />
     <Compile Include="Assets\Scripts\PlayerInteraction\InteractionTriggerMan.cs" />
-    <Compile Include="Assets\Scripts\PlayerInteraction\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerInteraction\SkillController.cs" />
+    <Compile Include="Assets\Scripts\UI\BackpackUI\BackpackUI.cs" />
+    <Compile Include="Assets\Scripts\UI\BackpackUI\BackpackUICaptainToggle.cs" />
+    <Compile Include="Assets\Scripts\UI\BackpackUI\BackpackUIDropdown.cs" />
+    <Compile Include="Assets\Scripts\UI\BackpackUI\BackpackUIToggle.cs" />
+    <Compile Include="Assets\Scripts\UI\BackpackUI\NoteUI.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Button\ButtonOverride.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Button\ButtonParameter.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\ShowAndHideUI.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Text\TextSpacing.cs" />
     <Compile Include="Assets\Scripts\UI\Basic\Toggle\ToggledObjects.cs" />
+    <Compile Include="Assets\Scripts\UI\Basic\TransitionUI.cs" />
     <Compile Include="Assets\Scripts\UI\HintUI\BubbleHintUI.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuUI\MainMenuUI.cs" />
     <Compile Include="Assets\Scripts\UI\PauseUI\PauseUI.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillUI\Skill.cs" />
+    <Compile Include="Assets\Scripts\UI\Test.cs" />
+    <Compile Include="Assets\Scripts\UI\字幕UI\ZimuUI.cs" />
+    <Compile Include="Assets\Scripts\UI\漫画UI\CartoonUI.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity/unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -623,124 +638,124 @@
       <HintPath>D:/Unity/unity/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Unity/project/GouDai/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/Unity/project/GouDai2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

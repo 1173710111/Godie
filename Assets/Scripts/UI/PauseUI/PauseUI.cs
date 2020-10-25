@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseUI : MonoBehaviour
 {
     bool m_IsPause = false; //是否处于暂停状态
+    AudioSourceController m_AudioSourceController;
 
     private void Update()
     {
@@ -13,6 +14,10 @@ public class PauseUI : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !m_IsPause) //开始暂停
             {
+                //音效
+                if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+                m_AudioSourceController.Play("按钮", transform);
+
                 m_IsPause = true;
                 /*GameObject[] UIs = GameObject.FindGameObjectsWithTag("UI");
                 foreach (GameObject ui in UIs)
@@ -30,9 +35,14 @@ public class PauseUI : MonoBehaviour
                 }
 
                 Time.timeScale = 0f;
+                
             }
             else if (Input.GetKeyDown(KeyCode.Escape) && m_IsPause) //取消暂停
             {
+                //音效
+                if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+                m_AudioSourceController.Play("按钮", transform);
+
                 m_IsPause = false;
                 transform.Find("PauseCanvas").gameObject.SetActive(false);
 
@@ -43,21 +53,31 @@ public class PauseUI : MonoBehaviour
 
     public void HelpButton()
     {
-        Debug.Log("Help");
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
         transform.Find("PauseCanvas/BackgroundPanel/BasicPanel").gameObject.SetActive(false);
         transform.Find("PauseCanvas/BackgroundPanel/HelpPanel").gameObject.SetActive(true);
     }
 
     public void MusicButton()
     {
-        Debug.Log("Music");
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
         transform.Find("PauseCanvas/BackgroundPanel/BasicPanel").gameObject.SetActive(false);
         transform.Find("PauseCanvas/BackgroundPanel/MusicPanel").gameObject.SetActive(true);
     }
 
     public void MenuButton()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0) //场景为主菜单时，直接返回
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
+        if (SceneManager.GetActiveScene().buildIndex == 0) //场景为主菜单时，直接返回
         {
             m_IsPause = false;
             transform.Find("PauseCanvas").gameObject.SetActive(false);
@@ -68,12 +88,14 @@ public class PauseUI : MonoBehaviour
             Time.timeScale = 1f;
             SceneManager.LoadScene(0);
         }
-
-        Debug.Log("Menu");
     }
 
     public void ReturnButton()
     {
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
         transform.Find("PauseCanvas/BackgroundPanel/HelpPanel").gameObject.SetActive(false);
         transform.Find("PauseCanvas/BackgroundPanel/MusicPanel").gameObject.SetActive(false);
         transform.Find("PauseCanvas/BackgroundPanel/BasicPanel").gameObject.SetActive(true);
@@ -81,6 +103,10 @@ public class PauseUI : MonoBehaviour
 
     public void ContinueButton()
     {
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
         m_IsPause = false;
         transform.Find("PauseCanvas").gameObject.SetActive(false);
 

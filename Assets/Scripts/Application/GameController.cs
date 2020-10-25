@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.Runtime.InteropServices;
 public static class GameController 
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void GameStart()
     {
         Debug.Log("GameStart!");
-        SceneManager.LoadScene(1);
+        Win32Help.SetImeEnable(false);
+        SceneManager.LoadScene(8);
     }
 
     public static void LoadScene(int sceneNumber)
@@ -31,7 +32,7 @@ public static class GameController
                 characterNumber = 1;
                 break;
             case 4:
-                characterNumber = 1;
+                characterNumber = 2;
                 break;
             case 5:
                 characterNumber = 2;
@@ -39,11 +40,12 @@ public static class GameController
             case 6:
                 characterNumber = 2;
                 break;
+            case 7:
+                characterNumber = 2;
+                break;
             default:
                 break;
         }
         return characterNumber;
     }
-
-    
 }

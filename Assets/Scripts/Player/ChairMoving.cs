@@ -8,6 +8,7 @@ public class ChairMoving : MonoBehaviour
     public float m_speed;
 
     private bool is_lookingRight = false;
+    private bool is_rushing = false;
     private GameObject child;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,17 @@ public class ChairMoving : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        
+        if (is_rushing)
+        {
+            if (is_lookingRight)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(15f, 0f);
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-15f, 0f);
+            }
+        }
     }
 
     private void MoveLeft()
@@ -61,5 +72,22 @@ public class ChairMoving : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         child.GetComponent<Animator>().SetBool("IsMoving", false);
+    }
+
+    private void Rush()
+    {
+        child.GetComponent<Animator>().SetBool("IsRushing", true);
+        is_rushing = true;
+        InputController.BanMouse(true);
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("WarningTrigger").transform.GetChild(0).GetComponent<Collider2D>(), true);
+        GameObject.Find("WarningTrigger").GetComponent<Collider2D>().enabled = false;
+        StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
+        {
+            child.GetComponent<Animator>().SetBool("IsRushing", false);
+            is_rushing = false;
+            InputController.BanMouse(false);
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("WarningTrigger").transform.GetChild(0).GetComponent<Collider2D>(), false);
+            GameObject.Find("WarningTrigger").GetComponent<Collider2D>().enabled = true;
+        }, 0.5f));
     }
 }

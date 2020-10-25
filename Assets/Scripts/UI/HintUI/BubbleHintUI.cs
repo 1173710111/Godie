@@ -12,11 +12,11 @@ public class BubbleHintUI : MonoBehaviour
 
     private bool m_IsShowing = false;
     private ItemsData itemsData;
+    private AudioSourceController m_AudioSourceController;
 
     //渐入并淡出，name提示内容的名称（对应道具类中的名称）,showTime渐入时长，holdTime完全显示的保持时长，alpha完全显示的alpha值
     public void ShowAndHide(string name, float showTime = 1f, float holdTime = 0.2f,float alpha = 1f)
     {
-        
         transform.Find("内容").GetComponent<Image>().sprite = itemsData.GetSpriteByItemName(name);
         GetComponent<CanvasGroup>().alpha = 0;
         GetComponent<RectTransform>().position = character.position + new Vector3(xOffset, yOffset, 0);
@@ -26,6 +26,10 @@ public class BubbleHintUI : MonoBehaviour
     }
     IEnumerator IE_ShowAndHide(float showTime, float holdTime, float alpha)
     {
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("气泡提示", transform);
+
         //淡入
         float delta = Time.deltaTime / showTime; //showTime时间内渐入/淡出
         while (GetComponent<CanvasGroup>().alpha != alpha)
@@ -95,6 +99,5 @@ public class BubbleHintUI : MonoBehaviour
     {
         transform.GetComponent<CanvasGroup>().alpha = 0;
         itemsData = GameObject.Find("ItemsData").GetComponent<ItemsData>();
-        
     }
 }

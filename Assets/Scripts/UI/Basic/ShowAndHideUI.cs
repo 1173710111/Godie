@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroup))]
 public class ShowAndHideUI : MonoBehaviour
 {
-    private bool m_IsShowing = false;
+    public bool m_IsShowing = false;
 
 
     //showTime时间内渐入,alpha完全显示时的alpha值，action执行完渐入后执行的函数

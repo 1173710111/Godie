@@ -16,6 +16,8 @@ public class GetOrLostItem : MonoBehaviour
 
     private bool m_IsShowing = false;
     private ItemsData itemsData;
+    private AudioSourceController m_AudioSourceController;
+
 
     private void Awake()
     {
@@ -29,6 +31,10 @@ public class GetOrLostItem : MonoBehaviour
         transform.Find("道具").GetComponent<Image>().sprite = itemsData.GetSpriteByItemName(itemName);
         transform.Find("符号").GetComponent<Image>().sprite = getIron;
         ShowFromTop(showTime, offset, holdTime, action, alpha);
+
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("获得道具", transform);
     }
 
     //显示失去道具的提示：道具名、渐入并淡出时长、上下偏移量、完全显示的停留时长、完全显示时的alpha值

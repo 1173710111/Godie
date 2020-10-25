@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 
 public static class InputController 
@@ -7,10 +9,12 @@ public static class InputController
     private static KeyCode[] leftButtons= { KeyCode.A, KeyCode.LeftArrow };
     private static KeyCode[] rightButtons = { KeyCode.D, KeyCode.RightArrow };
     private static KeyCode[] interactionButtons = { KeyCode.W, KeyCode.UpArrow };
+    private static KeyCode[] skillButtons = { KeyCode.LeftShift, KeyCode.RightShift };
     private static bool button_ban = false;
     private static bool mouse_ban = false;
     public static Vector3 hitPoint;
     public static bool interaction, left, right,mouseDown,right_mouseDown,left_mouseDown,buttonDown,anyDown;
+    public static bool rush;
 
     public static void BanButton(bool flag)
     {
@@ -32,17 +36,23 @@ public static class InputController
         left = false;
         right = false;
         interaction = false;
+        rush = false;
         if (!button_ban)
         {
             interaction = GetInteractionKey();
             left = GetLeftKey();
             right = GetRightKey();
-
             if (left && right)
             {
                 left = false;
                 right = false;
             }
+            string skill = GetSkillKey();
+            if (skill.Equals("rush"))
+            {
+                rush = true;
+            }
+            
         }
         if (!mouse_ban)
         {
@@ -100,5 +110,23 @@ public static class InputController
             }
         }
         return false;
+    }
+
+    private static string GetSkillKey()
+    {
+        foreach (KeyCode keyCode in skillButtons)
+        {
+            if (Input.GetKey(keyCode))
+            {
+                switch (keyCode)
+                {
+                    case KeyCode.LeftShift:
+                        return "rush";
+                    case KeyCode.RightShift:
+                        return "rush";
+                }
+            }
+        }
+        return "null";
     }
 }

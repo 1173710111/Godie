@@ -45,3 +45,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GuanTou: {fileID: -8218411537654425994, guid: 899883f4158c47540ae357634af683f3,
     type: 3}
+  PingZhuangShui: {fileID: -4397554144975934770, guid: 75121a430010e5542835a119e3da32c8,
+    type: 3}
+  ShouJu1: {fileID: -762197034586330424, guid: 65668a523d46f094f8cae656dd68ee9e, type: 3}
+  ZhaDan: {fileID: 1864860339877048063, guid: 33b46fa533ca3db4a8d2a7dc61c7b019, type: 3}
+  LingJian: {fileID: 3932249337734304570, guid: d48a9bf614a06fb46934018fbb06331e,
+    type: 3}
+  ZhiTiao: {fileID: 3488646986468852453, guid: 44572fe3633b36342ad5a06905b5d612, type: 3}
+  Seed: {fileID: -1647030555917050479, guid: 963cdd3f3d2d2c34f9ede7e0d2c44a83, type: 3}
+  Diary: {fileID: 330389837745465514, guid: afbe35db9b917dd48add13d3b9d6731c, type: 3}
+  ShouYinJi: {fileID: 3207579745489812468, guid: 43f37ba8b72895845b8418377b380938,
+    type: 3}
+  DianChi: {fileID: -963791335356448533, guid: afbe35db9b917dd48add13d3b9d6731c, type: 3}
