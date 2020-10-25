@@ -9,6 +9,8 @@ public class CartoonUI : MonoBehaviour
     [Header("漫画图集（需按顺序）")]
     [Tooltip("漫画1")] public Sprite[] cartoon1;
     [Tooltip("漫画2")] public Sprite[] cartoon2;
+    [Tooltip("漫画3")] public Sprite[] cartoon3;
+    [Tooltip("漫画4")] public Sprite[] cartoon4;
 
     private List<Sprite[]> list;
     private string m_CurCartoon; //"n格漫画"
@@ -20,6 +22,8 @@ public class CartoonUI : MonoBehaviour
         list = new List<Sprite[]>();
         list.Add(cartoon1);
         list.Add(cartoon2);
+        list.Add(cartoon3);
+        list.Add(cartoon4);
     }
 
     //显示对应id的漫画,intervalTime每张漫画显示的间隔时间，showTime单张漫画渐入的时长
@@ -33,6 +37,10 @@ public class CartoonUI : MonoBehaviour
         transform.Find("Canvas/Panel/4格漫画/Image4").gameObject.SetActive(false);
         transform.Find("Canvas/Panel/4格漫画/Arrow").gameObject.SetActive(false);
         transform.Find("Canvas/Panel/3格漫画").gameObject.SetActive(false);
+        transform.Find("Canvas/Panel/3格漫画/Image1").gameObject.SetActive(false);
+        transform.Find("Canvas/Panel/3格漫画/Image2").gameObject.SetActive(false);
+        transform.Find("Canvas/Panel/3格漫画/Image3").gameObject.SetActive(false);
+        transform.Find("Canvas/Panel/3格漫画/Arrow").gameObject.SetActive(false);
         transform.Find("Canvas").GetComponent<ShowAndHideUI>().Show(0.5f);
 
         //。。。。。。禁用玩家输入的函数放这里
@@ -65,7 +73,11 @@ public class CartoonUI : MonoBehaviour
             else if (id == 1 && i == 1) m_AudioSourceController.Play("开罐头", transform);
             else if(id == 1 && i==2) m_AudioSourceController.Play("四格漫画1-2", transform);
             else if (id == 1 && i == 3) m_AudioSourceController.Play("四格漫画1-3", transform);
-            
+            else if (id == 1 && i == 4) m_AudioSourceController.Play("四格漫画1-4", transform);
+            else if (id == 3 && i == 2) m_AudioSourceController.Play("收音机杂音", transform);
+            else if (id == 3 && i == 3) m_AudioSourceController.Play("修理轮椅", transform);
+            else if (id == 3 && i == 4) m_AudioSourceController.Play("四格漫画2-3", transform);
+
             transform.Find("Canvas/Panel/" + m_CurCartoon + "/Image" + i).GetComponent<ShowAndHideUI>().Show();
             yield return new WaitForSeconds(intervalTime);
         }
@@ -79,7 +91,7 @@ public class CartoonUI : MonoBehaviour
         {
             if (Input.anyKey)
             {
-                Hide();
+                Hide(id);
                 break;
             }
             yield return 0;
@@ -88,9 +100,19 @@ public class CartoonUI : MonoBehaviour
 
 
     //淡出漫画UI，hideTime淡出时长
-    public void Hide(float hideTime = 0.5f)
+    public void Hide(int id,float hideTime = 0.5f)
     {
-        transform.Find("Canvas").GetComponent<ShowAndHideUI>().Hide(hideTime);
+        transform.Find("Canvas").GetComponent<ShowAndHideUI>().Hide(hideTime,delegate() {
+            if (id == 3)
+            {
+                GameObject newPanel;
+                if (GameObject.Find("UI/收音机播放UI(Clone)") == null) { newPanel = Instantiate(GameObject.Find("ItemsData").GetComponent<ItemsData>().GetItemByItemName("收音机").newPanelPrefab, GameObject.Find("UI").transform); }
+                else newPanel = GameObject.Find("UI/收音机播放UI(Clone)").gameObject;
+                newPanel.gameObject.SetActive(true);
+                GameObject.Find("UI").transform.Find("收音机播放UI(Clone)/Note").GetComponent<NoteUI>().Show("收音机");
+            }
+        });
+        if (id == 4) { /*这里加获得日记的逻辑*/ }
     }
 
 }

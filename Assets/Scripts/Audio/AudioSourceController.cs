@@ -79,11 +79,13 @@ public class AudioSourceController : MonoBehaviour
         audioSource.Stop();
     }
 
+    //停止播放
     public void Stop()
     {
         audioSource.Stop();
     }
 
+    //淡出音频
     public void FadeOut()
     {
         StartCoroutine(IE_FadeOut());

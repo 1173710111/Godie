@@ -41,7 +41,8 @@ public class BackpackUI : MonoBehaviour
         }
     }
 
-    public bool Contains(string itemName)
+    //查找背包中是否有某道具：itemName道具名(对应ItemsData类中的道具名)
+    public bool HasItem(string itemName)
     {
         foreach (var k in transform.Find("Canvas/Dropdown").GetComponent<BackpackUIDropdown>().options)
         {

@@ -32,7 +32,6 @@ public class PlayerActions : MonoBehaviour
         #region 切换视角
         if (CameraController!=null&&GameController.GetCharacterNumber() == 2)
         {
-            
             int mainCamera = CameraController.GetComponent<CameraAndCharacterController>().mainCamera;
             if (mainCamera == 0 && InputController.mouseDown)
             {
@@ -44,6 +43,10 @@ public class PlayerActions : MonoBehaviour
                 CameraController.GetComponent<CameraAndCharacterController>().mainCamera = 0;
                 CameraController.GetComponent<CameraAndCharacterController>().SendMessage("ChangeCamera");
             }
+        }
+        else if(GameController.GetCharacterNumber() !=2)
+        {
+            Debug.Log("这个场景的角色不是两个，所以不能切换视角！");
         }
         #endregion
 
@@ -75,21 +78,7 @@ public class PlayerActions : MonoBehaviour
         #region 轮椅的移动
         if (m_state == 1)
         {
-            if (InputController.left)
-            {
-                gameObject.GetComponent<ChairMoving>().SendMessage("MoveLeft");
-            }
-            else if (InputController.right)
-            {
-                gameObject.GetComponent<ChairMoving>().SendMessage("MoveRight");
-            }
-            else if (InputController.interaction)
-            {
-                interaction = true;
-                gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
-                return;
-            }
-            else if (InputController.rush)
+            if (InputController.rush)
             {
                 Skill rushSkill = GameObject.Find("技能UI/Canvas/Panel").transform.Find("技能1").GetComponent<Skill>();
                 if (rushSkill.IsAble())
@@ -103,12 +92,24 @@ public class PlayerActions : MonoBehaviour
                     }
                 }
             }
-            else
+            if (InputController.left)
+            {
+                gameObject.GetComponent<ChairMoving>().SendMessage("MoveLeft");
+            }
+            else if (InputController.right)
+            {
+                gameObject.GetComponent<ChairMoving>().SendMessage("MoveRight");
+            }
+            else if (InputController.interaction)
+            {
+                interaction = true;
+                gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
+                return;
+            }else
             {
                 gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
                 return;
             }
-
         }
         #endregion
 

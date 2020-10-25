@@ -19,6 +19,8 @@ public class Test : MonoBehaviour
 
     void Update()
     {
+        Camera.main.transform.position -= new Vector3(Time.deltaTime * 1f, 0, 0);
+
         if (Input.GetKeyDown(KeyCode.N))
         {
             skill01.GetSkill();
@@ -33,7 +35,7 @@ public class Test : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            zimuUI.Show("甲:“我给你讲个冷笑话啊!”\n乙:“好啊。”\n甲:“这个笑话很冷!”\n乙:“我知道了你讲吧。”\n沉默中……\n乙:“你讲啊!”\n甲:“我讲完了啊。”");
+            zimuUI.Show("瓶装水");
         }
         /*if (Input.GetKeyDown(KeyCode.O))
         {
@@ -42,20 +44,20 @@ public class Test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             getOrLostItem.LostShow("罐头");
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.U))
         {
-            bubbleHintUI.ShowAndHide("罐头",5f);
-        }*/
+            bubbleHintUI.ShowAndHide("罐头");
+        }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            GameObject.Find("BackpackUI/Canvas/Note").transform.GetComponent<NoteUI>().Show("罐头",5f);
+            GameObject.Find("BackpackUI/Canvas/Note").transform.GetComponent<NoteUI>().Show("罐头",2f);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log("Input M");
             Debug.Log(Time.timeScale);
-            GameObject.Find("n格漫画UI").transform.GetComponent<CartoonUI>().Show(1);
+            GameObject.Find("n格漫画UI").transform.GetComponent<CartoonUI>().Show(4);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {

@@ -43,6 +43,9 @@ public static class GameController
             case 7:
                 characterNumber = 2;
                 break;
+            case 8:
+                characterNumber = 2;
+                break;
             default:
                 break;
         }

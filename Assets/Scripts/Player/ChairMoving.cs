@@ -80,14 +80,14 @@ public class ChairMoving : MonoBehaviour
         is_rushing = true;
         InputController.BanMouse(true);
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("WarningTrigger").transform.GetChild(0).GetComponent<Collider2D>(), true);
-        GameObject.Find("WarningTrigger").GetComponent<Collider2D>().enabled = false;
+        //GameObject.Find("WarningTrigger").GetComponent<Collider2D>().enabled = false;
         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
         {
             child.GetComponent<Animator>().SetBool("IsRushing", false);
             is_rushing = false;
             InputController.BanMouse(false);
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("WarningTrigger").transform.GetChild(0).GetComponent<Collider2D>(), false);
-            GameObject.Find("WarningTrigger").GetComponent<Collider2D>().enabled = true;
+            //GameObject.Find("WarningTrigger").GetComponent<Collider2D>().enabled = true;
         }, 0.5f));
     }
 }

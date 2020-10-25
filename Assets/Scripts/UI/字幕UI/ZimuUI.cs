@@ -8,7 +8,7 @@ public class ZimuUI : MonoBehaviour
 {
     private bool m_IsShowing = false; //是否已显示
     private string[] m_Content = new string[] { }; //文字内容
-    [Tooltip("文字变化的间隔时间")] public float m_IntervalTime = 1.5f;
+    [Tooltip("文字变化的间隔时间")] public float m_IntervalTime = 2f;
 
     //显示UI,自动播放内容，最后UI淡出
     public void Show(string text)
@@ -17,7 +17,7 @@ public class ZimuUI : MonoBehaviour
         m_IsShowing = true;
         transform.GetComponent<Animator>().enabled = false;
         transform.GetComponent<Animator>().enabled = true;
-        transform.gameObject.SetActive(m_IsShowing);
+        transform.Find("Canvas").gameObject.SetActive(m_IsShowing);
         SetText(text);
         transform.GetComponent<Animator>().SetTrigger("show");
 
@@ -43,7 +43,7 @@ public class ZimuUI : MonoBehaviour
                 anim.SetTrigger("hide");
                 yield return new WaitForSeconds(1f);
                 m_IsShowing = false;
-                anim.gameObject.SetActive(m_IsShowing);
+                anim.transform.Find("Canvas").gameObject.SetActive(m_IsShowing);
                 break;
             }
             float oldAlpha = text.color.a;

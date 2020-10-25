@@ -3817,6 +3817,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 6381489475642306015}
+    - target: {fileID: 1452024043385180725, guid: 1d8559830ebebb7448c2213f9eea3c69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3030135836760533688, guid: 1d8559830ebebb7448c2213f9eea3c69,
         type: 3}
       propertyPath: m_Name
@@ -3887,6 +3892,16 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 19174372}
+    - target: {fileID: 5207786482281286992, guid: 1d8559830ebebb7448c2213f9eea3c69,
+        type: 3}
+      propertyPath: m_Name
+      value: TrackCameraController-ElectricWire
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207786482281286994, guid: 1d8559830ebebb7448c2213f9eea3c69,
+        type: 3}
+      propertyPath: track
+      value: 
+      objectReference: {fileID: 5207786482574393689}
     - target: {fileID: 5207786483061520427, guid: 1d8559830ebebb7448c2213f9eea3c69,
         type: 3}
       propertyPath: m_BoundingShape2D
@@ -3899,6 +3914,12 @@ PrefabInstance:
       objectReference: {fileID: 590041252}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d8559830ebebb7448c2213f9eea3c69, type: 3}
+--- !u!1 &5207786482574393689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1452024043385180725, guid: 1d8559830ebebb7448c2213f9eea3c69,
+    type: 3}
+  m_PrefabInstance: {fileID: 5207786482574393688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6381489475642306009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6646678286870987357, guid: 281e4209a7cb5e1468bc6ab1e7343534,

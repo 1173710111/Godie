@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseUI : MonoBehaviour
@@ -81,7 +82,7 @@ public class PauseUI : MonoBehaviour
         {
             m_IsPause = false;
             transform.Find("PauseCanvas").gameObject.SetActive(false);
-            transform.parent.Find("MainCanvas").gameObject.SetActive(true);
+            transform.parent.Find("MainCanvas/MainPanel").gameObject.SetActive(true);
         }
         else //场景不为主菜单时，加载主菜单场景
         {
@@ -111,5 +112,17 @@ public class PauseUI : MonoBehaviour
         transform.Find("PauseCanvas").gameObject.SetActive(false);
 
         Time.timeScale = 1f;
+    }
+
+    public void SetBGM()
+    {
+        AudioDataManager.BGMVolumn = transform.Find("PauseCanvas/BackgroundPanel/MusicPanel/BGMPanel/Slider").GetComponent<Slider>().value;
+        GameObject.Find("Audio/AudioSourcesManager").GetComponent<AudioSource>().volume = AudioDataManager.GetAudioDataByName("bgm1").volumn * AudioDataManager.BGMVolumn;
+    }
+
+    public void SetSound()
+    {
+        AudioDataManager.soundVolumn = transform.Find("PauseCanvas/BackgroundPanel/MusicPanel/SoundPanel/Slider").GetComponent<Slider>().value;
+        Debug.Log("全局音效音量 = " + AudioDataManager.soundVolumn);
     }
 }

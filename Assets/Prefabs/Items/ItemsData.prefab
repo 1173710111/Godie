@@ -51,7 +51,7 @@ MonoBehaviour:
   ZhaDan: {fileID: 1864860339877048063, guid: 33b46fa533ca3db4a8d2a7dc61c7b019, type: 3}
   LingJian: {fileID: 3932249337734304570, guid: d48a9bf614a06fb46934018fbb06331e,
     type: 3}
-  ZhiTiao: {fileID: 3488646986468852453, guid: 44572fe3633b36342ad5a06905b5d612, type: 3}
+  ZhiTiao: {fileID: 1231475880062597869, guid: 874f8a594dfe78b4d90b4a02b2d59537, type: 3}
   Seed: {fileID: -1647030555917050479, guid: 963cdd3f3d2d2c34f9ede7e0d2c44a83, type: 3}
   Diary: {fileID: 330389837745465514, guid: afbe35db9b917dd48add13d3b9d6731c, type: 3}
   ShouYinJi: {fileID: 3207579745489812468, guid: 43f37ba8b72895845b8418377b380938,

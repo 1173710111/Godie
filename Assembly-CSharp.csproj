@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Application\MouseCursorController.cs" />
     <Compile Include="Assets\Scripts\Application\ShowAndHide.cs" />
     <Compile Include="Assets\Scripts\Application\TrackCameraController.cs" />
+    <Compile Include="Assets\Scripts\Application\UpStairs.cs" />
     <Compile Include="Assets\Scripts\Application\Win32Help.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioDataManager.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioSourceController.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Assets\Scripts\UI\Test.cs" />
     <Compile Include="Assets\Scripts\UI\字幕UI\ZimuUI.cs" />
     <Compile Include="Assets\Scripts\UI\漫画UI\CartoonUI.cs" />
+    <Compile Include="Assets\Scripts\Video\VideoLinked.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity/unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

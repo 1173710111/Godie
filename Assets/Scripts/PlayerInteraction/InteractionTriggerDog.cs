@@ -130,8 +130,6 @@ public class InteractionTriggerDog : MonoBehaviour
                         GameObject.Find("MouseCursor").GetComponent<MouseCursorController>().EnterPointPlane();
                         zimu.Show("拿到了零件！可以修理一下轮椅了。");
                         GameObject.Find("CameraAndCharacterController").GetComponent<CameraAndCharacterController>().SendMessage("LookAtMan");
-                        GameObject.Find("技能UI/Canvas/Panel/技能1").GetComponent<Skill>().GetSkill();
-                        
                     }
                 }else
                 {

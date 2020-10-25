@@ -42,6 +42,39 @@ public class BackpackUIToggle : Toggle
         {
             Note.GetComponent<NoteUI>().Show(itemsData.GetItemByItemName(label).name);
         }
+        else if (itemsData.GetItemByItemName(label).isNewPanel)
+        {
+            if(label == "收音机")
+            {
+                if (Note.parent.parent.GetComponent<BackpackUI>().HasItem("电池")) //收音机有电池
+                {
+                    GameObject.Find("UI/n格漫画UI").transform.GetComponent<CartoonUI>().Show(3);
+                }
+                else //收音机没电池
+                {
+                    GameObject.Find("UI/字幕UI").GetComponent<ZimuUI>().Show("没有反应......难道是没电了吗？");
+                }
+            }
+            if(label == "零件")
+            {
+                /*GameObject newPanel;
+                if (Note.parent.Find("零件安装UI (clone)") == null) { newPanel = Instantiate(itemsData.GetItemByItemName(label).newPanelPrefab, GameObject.Find("UI").transform); }
+                else newPanel = GameObject.Find("UI/零件安装UI (clone)").gameObject;
+                newPanel.GetComponent<ShowAndHideUI>().Show();*/
+                GameObject.Find("UI/技能UI/Canvas/Panel/技能1").GetComponent<Skill>().GetSkill();
+                GameObject.Find("UI/字幕UI").GetComponent<ZimuUI>().Show("将零件安装到轮椅上了\n轮椅可以短暂的冲刺了，也许可以跨越某些地形了...");
+                Note.parent.parent.GetComponent<BackpackUI>().RemoveItem("零件");
+                
+            }
+            if(label == "收据1")
+            {
+                GameObject newPanel;
+                if (GameObject.Find("UI/收据(Clone)") == null) { newPanel = Instantiate(GameObject.Find("ItemsData").GetComponent<ItemsData>().GetItemByItemName("收据1").newPanelPrefab, GameObject.Find("UI").transform); }
+                else newPanel = GameObject.Find("UI/收据UI(Clone)").gameObject;
+                newPanel.gameObject.SetActive(true);
+                GameObject.Find("UI").transform.Find("收据UI(Clone)/Note").GetComponent<NoteUI>().Show("收据1", 0.5f, 2f, 2);
+            }
+        }
         base.OnPointerUp(eventData);
     }
 

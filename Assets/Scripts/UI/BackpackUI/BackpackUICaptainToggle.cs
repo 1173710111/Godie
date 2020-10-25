@@ -30,6 +30,7 @@ public class BackpackUICaptainToggle : MonoBehaviour
             transform.GetComponent<Toggle>().targetGraphic.GetComponent<Image>().sprite = off;
             transform.GetComponent<Toggle>().targetGraphic.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
         }
+
         if(audioSourceController==null) audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
         audioSourceController.Play("按钮",transform);
     }

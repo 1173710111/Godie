@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenuUI : MonoBehaviour
 {
     bool m_HasSave; //是否有存档
+    private AudioSourceController m_AudioSourceController;
+
 
     private void Awake()
     {
@@ -24,6 +26,10 @@ public class MainMenuUI : MonoBehaviour
     //Button开始新游戏
     public void NewStartButton()
     {
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
         SceneManager.LoadScene(1); //加载场景1
         Debug.Log("NewStart");
     }
@@ -31,13 +37,21 @@ public class MainMenuUI : MonoBehaviour
     //Button继续游戏
     public void ContinueButton()
     {
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
         Debug.Log("Continue");
     }
 
     //Button设置
     public void SettingButton()
     {
-        transform.Find("MainCanvas").gameObject.SetActive(false);
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
+        transform.Find("MainCanvas/MainPanel").gameObject.SetActive(false);
         transform.Find("PauseUI/PauseCanvas").gameObject.SetActive(true);
         Debug.Log("Setting");
     }
@@ -45,6 +59,10 @@ public class MainMenuUI : MonoBehaviour
     //Button退出
     public void ExitButton()
     {
+        //音效
+        if (m_AudioSourceController == null) m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        m_AudioSourceController.Play("按钮", transform);
+
         Application.Quit();
         Debug.Log("Exit");
     }
