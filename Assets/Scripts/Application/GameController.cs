@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Runtime.InteropServices;
+using UnityEngine.EventSystems;
 public static class GameController 
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -8,12 +9,18 @@ public static class GameController
     {
         Debug.Log("GameStart!");
         Win32Help.SetImeEnable(false);
-        SceneManager.LoadScene(8);
+        SceneManager.LoadScene(0);
     }
 
     public static void LoadScene(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
+        if (GameObject.Find("EventSystem") != null)
+        {
+            GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = false;
+        }
+        InputController.BanButton(false);
+        InputController.BanMouse(false);
         Time.timeScale = 1f;
     }
 

@@ -9,9 +9,9 @@ using System.Linq;
 public class TextSpacing : BaseMeshEffect
 {
     [SerializeField]
-    private float spacing_x;
+    public float spacing_x;
     [SerializeField]
-    private float spacing_y;
+    public float spacing_y;
 
     private List<UIVertex> mVertexList;
 

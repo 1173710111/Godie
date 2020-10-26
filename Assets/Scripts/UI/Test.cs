@@ -57,7 +57,7 @@ public class Test : MonoBehaviour
         {
             Debug.Log("Input M");
             Debug.Log(Time.timeScale);
-            GameObject.Find("n格漫画UI").transform.GetComponent<CartoonUI>().Show(4);
+            GameObject.Find("n格漫画UI").transform.GetComponent<CartoonUI>().Show(5);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {

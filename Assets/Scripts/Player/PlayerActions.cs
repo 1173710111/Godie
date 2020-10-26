@@ -21,6 +21,7 @@ public class PlayerActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (audioSourceController == null) audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
     }
 
     // Update is called once per frame
@@ -56,20 +57,26 @@ public class PlayerActions : MonoBehaviour
             if (InputController.left)
             {
                 gameObject.GetComponent<PoorManMoving>().SendMessage("MoveLeft");
+                audioSourceController.Play("人走路", transform);
             }
             else if (InputController.right)
             {
                 gameObject.GetComponent<PoorManMoving>().SendMessage("MoveRight");
+                audioSourceController.Play("人走路", transform);
             }
             else if (InputController.interaction)
             {
                 interaction = true;
                 gameObject.GetComponent<PoorManMoving>().SendMessage("StopMoving");
+                audioSourceController.Stop();
+                audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
                 return;
             }
             else
             {
                 gameObject.GetComponent<PoorManMoving>().SendMessage("StopMoving");
+                audioSourceController.Stop();
+                audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
                 return;
             }
         }
@@ -86,28 +93,34 @@ public class PlayerActions : MonoBehaviour
                     if (!rushSkill.isCD)
                     {
                         rushSkill.UseSkill();
-                        if (audioSourceController == null) audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
-                        audioSourceController.Play("冲刺", transform);
+                        //audioSourceController.Play("冲刺", transform);
                         gameObject.GetComponent<ChairMoving>().SendMessage("Rush");
                     }
                 }
             }
             if (InputController.left)
             {
+                audioSourceController.Play("轮椅移动", transform);
                 gameObject.GetComponent<ChairMoving>().SendMessage("MoveLeft");
             }
             else if (InputController.right)
             {
+                audioSourceController.Play("轮椅移动", transform);
                 gameObject.GetComponent<ChairMoving>().SendMessage("MoveRight");
             }
             else if (InputController.interaction)
             {
                 interaction = true;
                 gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
+                audioSourceController.Stop();
+                audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
                 return;
-            }else
+            }
+            else
             {
                 gameObject.GetComponent<ChairMoving>().SendMessage("StopMoving");
+                audioSourceController.Stop();
+                audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
                 return;
             }
         }
@@ -121,21 +134,27 @@ public class PlayerActions : MonoBehaviour
             {
                 gameObject.GetComponent<PlayerMoving>().SendMessage("IsMoving", true);
                 gameObject.GetComponent<PlayerMoving>().SendMessage("MoveLeft");
+                audioSourceController.Play("人走路", transform);
             }
             else if (InputController.right)
             {
                 gameObject.GetComponent<PlayerMoving>().SendMessage("IsMoving", true);
                 gameObject.GetComponent<PlayerMoving>().SendMessage("MoveRight");
+                audioSourceController.Play("人走路", transform);
             }
             else if (InputController.interaction)
             {
                 interaction = true;
                 gameObject.GetComponent<PlayerMoving>().SendMessage("IsMoving", false);
+                audioSourceController.Stop();
+                audioSourceController= AudioSourcesManager.ApplyAudioSourceController();
                 return;
             }
             else
             {
                 gameObject.GetComponent<PlayerMoving>().SendMessage("IsMoving", false);
+                audioSourceController.Stop();
+                audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
                 return;
             }
 

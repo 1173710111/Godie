@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioSourceController : MonoBehaviour
 {
-    AudioSource audioSource;
+    AudioSource audioSource = null;
     AudioData audioData;
 
     //播放audioName的音频，播放参数为AudioSourceManager中设定的默认值
@@ -82,6 +82,7 @@ public class AudioSourceController : MonoBehaviour
     //停止播放
     public void Stop()
     {
+        if(audioSource!=null)
         audioSource.Stop();
     }
 

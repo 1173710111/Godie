@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -434,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358534874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.11, y: 0.1500001, z: -10}
+  m_LocalPosition: {x: 14.11, y: -0.03999996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Need_Interaction: 1
-  next_scene: 2
+  next_scene: 5
 --- !u!1 &499417818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,7 +1985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046053294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 561298386}
@@ -3202,7 +3202,7 @@ Transform:
   m_GameObject: {fileID: 1964135856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -28.470001, y: 3.8564997, z: 12}
-  m_LocalScale: {x: 1, y: 1, z: 2.372764}
+  m_LocalScale: {x: 0.8, y: 1, z: 2.372764}
   m_Children:
   - {fileID: 1240294888}
   m_Father: {fileID: 131581560}
@@ -3706,7 +3706,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1807770752}
     - target: {fileID: 3487001965592337555, guid: f884580c25f0ed241930785849cd6242,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3715,7 +3715,7 @@ PrefabInstance:
     - target: {fileID: 3487001965592337555, guid: f884580c25f0ed241930785849cd6242,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9440753
+      value: -2.1340754
       objectReference: {fileID: 0}
     - target: {fileID: 3487001965592337555, guid: f884580c25f0ed241930785849cd6242,
         type: 3}
@@ -3765,7 +3765,7 @@ PrefabInstance:
     - target: {fileID: 3487001966705900876, guid: f884580c25f0ed241930785849cd6242,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 1.69
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3487001966705900876, guid: f884580c25f0ed241930785849cd6242,
         type: 3}
@@ -4145,6 +4145,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2752268787336083920, guid: bf1064981c510b349b9f69c03c4adc4e,
+        type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 1807770752}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf1064981c510b349b9f69c03c4adc4e, type: 3}
 --- !u!1 &8819255052422021499 stripped

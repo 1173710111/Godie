@@ -28,6 +28,8 @@ public class Skill : MonoBehaviour
 
     public void GetSkill()
     {
+        AudioSourceController audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+        audioSourceController.Play("修理轮椅", transform);
         m_Disable = false;
         GetComponent<ShowAndHideUI>().Show();
         GetComponent<Image>().sprite = normalSprite;
@@ -45,6 +47,8 @@ public class Skill : MonoBehaviour
             GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1f);
             transform.GetChild(0).GetComponent<Image>().sprite = cdSprite;
             transform.GetChild(0).GetComponent<Image>().color = new Color(0f, 0f,0f, 0.4f);
+            AudioSourceController audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+            audioSourceController.Play("冲刺", transform);
             StartCoroutine(IE_CD());
         }
     }

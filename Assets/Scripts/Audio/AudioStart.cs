@@ -9,6 +9,6 @@ public class AudioStart : MonoBehaviour
         TransitionUI.FadeOut(3f);
         AudioDataManager.Init();
         AudioSourcesManager.Init();
-        GameObject.Find("Audio/AudioSourcesManager").GetComponent<AudioSource>().volume = AudioDataManager.GetAudioDataByName("bgm1").volumn * AudioDataManager.BGMVolumn;
+        GameObject.Find("AudioSourcesManager").GetComponent<AudioSource>().volume = AudioDataManager.GetAudioDataByName("bgm1").volumn * AudioDataManager.BGMVolumn;
     }
 }

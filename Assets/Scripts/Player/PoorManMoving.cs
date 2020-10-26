@@ -16,13 +16,15 @@ public class PoorManMoving : MonoBehaviour
     private float last_time;
     private GameObject child;
     private bool is_Cough;
+    AudioSourceController audioSourceController;
 
     private void Start()
     {
         last_time = 0f;
         is_Cough = false;
         child = transform.GetChild(0).gameObject;
-    }
+        if (audioSourceController == null) audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
+     }
 
     void Update()
     {
@@ -34,6 +36,7 @@ public class PoorManMoving : MonoBehaviour
         {
             StopMoving();
             child.GetComponent<Animator>().SetBool("IsCough", true);
+            audioSourceController.Play("咳嗽", transform);
             InputController.BanButton(true);
             last_time = 0f;
             is_Cough = true;
@@ -45,6 +48,8 @@ public class PoorManMoving : MonoBehaviour
     {
         InputController.BanButton(false);
         child.GetComponent<Animator>().SetBool("IsCough", false);
+        audioSourceController.Stop();
+        audioSourceController = AudioSourcesManager.ApplyAudioSourceController();
         last_time = 0f;
         is_Cough = false;
         InputController.GetKey();

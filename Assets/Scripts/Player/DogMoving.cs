@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.MemoryProfiler;
+﻿
 using UnityEngine;
 
 public class DogMoving : MonoBehaviour
@@ -9,10 +7,6 @@ public class DogMoving : MonoBehaviour
     public float dog_speed_x;
     [Tooltip("狗子的竖直移动速度")]
     public float dog_speed_y;
-    [Tooltip("地面所在层")]
-    public LayerMask groundLayer;
-    //人物中心与地面的垂直距离
-    private float distance;
 
     //此时狗子是不是在空中
     private bool is_inAir=false;
@@ -21,22 +15,10 @@ public class DogMoving : MonoBehaviour
     private Vector3 target_pos;
     private bool lookRight;
 
-    void Start()
-    {
-        distance=transform.position.y-GameObject.Find("GroundSurface").transform.position.y+0.05f;
-    }
 
     private void LateUpdate()
     {
-        RaycastHit2D hitInfo=Physics2D.Raycast(transform.position,Vector2.down,distance,groundLayer);
-        if (hitInfo.collider == null)
-        {
-            is_inAir = true;
-        }
-        else
-        {
-            is_inAir = false;
-        }
+        is_inAir = GetComponent<BottomCheck>().IsInAir();
         if (is_moving&&!is_inAir)
         {
             Vector3 offset = target_pos - transform.position;

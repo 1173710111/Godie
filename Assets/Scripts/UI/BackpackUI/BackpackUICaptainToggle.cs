@@ -23,7 +23,6 @@ public class BackpackUICaptainToggle : MonoBehaviour
         {
             transform.GetComponent<Toggle>().targetGraphic.GetComponent<Image>().sprite = on;
             transform.GetComponent<Toggle>().targetGraphic.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-
         }
         else
         {

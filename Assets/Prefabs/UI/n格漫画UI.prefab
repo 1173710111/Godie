@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Sprite: {fileID: -2593152784790974045, guid: 0fdb50e07d90ee04b81f54d193e58da4,
     type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -241,6 +241,14 @@ MonoBehaviour:
   - {fileID: -5742633755626244197, guid: 0fdb50e07d90ee04b81f54d193e58da4, type: 3}
   - {fileID: -2593152784790974045, guid: 0fdb50e07d90ee04b81f54d193e58da4, type: 3}
   - {fileID: 707547271410952324, guid: 0fdb50e07d90ee04b81f54d193e58da4, type: 3}
+  cartoon5:
+  - {fileID: 1864860339877048063, guid: 698d6674ca8ccbb4cb9f9e74910bae42, type: 3}
+  - {fileID: -3650470969822094602, guid: 698d6674ca8ccbb4cb9f9e74910bae42, type: 3}
+  - {fileID: 3073251122095007748, guid: 698d6674ca8ccbb4cb9f9e74910bae42, type: 3}
+  cartoon6:
+  - {fileID: -5099883927777337399, guid: 37dbf1415016cab4f8b92bc93fd45fdf, type: 3}
+  - {fileID: -7775317148887479823, guid: 37dbf1415016cab4f8b92bc93fd45fdf, type: 3}
+  - {fileID: 8091470220301371855, guid: 37dbf1415016cab4f8b92bc93fd45fdf, type: 3}
 --- !u!1 &1779793246310695378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,7 +1009,7 @@ MonoBehaviour:
   m_Sprite: {fileID: -5742633755626244197, guid: 0fdb50e07d90ee04b81f54d193e58da4,
     type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1102,7 +1110,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 707547271410952324, guid: 0fdb50e07d90ee04b81f54d193e58da4, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

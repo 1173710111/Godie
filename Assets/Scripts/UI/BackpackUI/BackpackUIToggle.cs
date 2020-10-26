@@ -41,14 +41,16 @@ public class BackpackUIToggle : Toggle
         if (itemsData.GetItemByItemName(label).isNote)
         {
             Note.GetComponent<NoteUI>().Show(itemsData.GetItemByItemName(label).name);
+            GameObject.Find("BackpackUI/Canvas/Dropdown").GetComponent<BackpackUIDropdown>().CanUnBan = false;
         }
         else if (itemsData.GetItemByItemName(label).isNewPanel)
         {
-            if(label == "收音机")
+            if (label == "收音机")
             {
                 if (Note.parent.parent.GetComponent<BackpackUI>().HasItem("电池")) //收音机有电池
                 {
                     GameObject.Find("UI/n格漫画UI").transform.GetComponent<CartoonUI>().Show(3);
+                    GameObject.Find("BackpackUI/Canvas/Dropdown").GetComponent<BackpackUIDropdown>().CanUnBan = false;
                 }
                 else //收音机没电池
                 {
@@ -61,13 +63,20 @@ public class BackpackUIToggle : Toggle
                 if (Note.parent.Find("零件安装UI (clone)") == null) { newPanel = Instantiate(itemsData.GetItemByItemName(label).newPanelPrefab, GameObject.Find("UI").transform); }
                 else newPanel = GameObject.Find("UI/零件安装UI (clone)").gameObject;
                 newPanel.GetComponent<ShowAndHideUI>().Show();*/
-                GameObject.Find("UI/技能UI/Canvas/Panel/技能1").GetComponent<Skill>().GetSkill();
+                InputController.BanButton(true);
+                InputController.BanMouse(true);
+                StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => 
+                { 
+                    InputController.BanButton(false);
+                    InputController.BanMouse(false);
+                },5f));
                 GameObject.Find("UI/字幕UI").GetComponent<ZimuUI>().Show("将零件安装到轮椅上了\n轮椅可以短暂的冲刺了，也许可以跨越某些地形了...");
+                GameObject.Find("UI/技能UI/Canvas/Panel/技能1").GetComponent<Skill>().GetSkill();
                 Note.parent.parent.GetComponent<BackpackUI>().RemoveItem("零件");
-                
             }
             if(label == "收据1")
             {
+                GameObject.Find("BackpackUI/Canvas/Dropdown").GetComponent<BackpackUIDropdown>().CanUnBan = false;
                 GameObject newPanel;
                 if (GameObject.Find("UI/收据(Clone)") == null) { newPanel = Instantiate(GameObject.Find("ItemsData").GetComponent<ItemsData>().GetItemByItemName("收据1").newPanelPrefab, GameObject.Find("UI").transform); }
                 else newPanel = GameObject.Find("UI/收据UI(Clone)").gameObject;
