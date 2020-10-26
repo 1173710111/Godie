@@ -83,7 +83,6 @@ public class InteractionTriggerMan : MonoBehaviour
                 remind.transform.localPosition = new Vector3(0f, 3f, 0f);
                 remind.transform.localScale = new Vector3(0.4f,0.4f,0.4f);
                 remind.GetComponent<ShowAndHide>().Show(1f);
-                //ZimuUI zimu = GameObject.Find("UI").transform.Find("字幕UI").GetComponent<ZimuUI>();
                 zimu.Show("太危险了！可是必须要过去。");
                 return;
             }
@@ -97,6 +96,8 @@ public class InteractionTriggerMan : MonoBehaviour
             if (interaction_type == 5)
             {
                 remind.GetComponent<ShowAndHide>().Hide(1f);
+                Destroy(remind, 1f);
+                Destroy(getOrLose, 1f);
                 return;
             }
             Destroy(remind);
@@ -120,9 +121,7 @@ public class InteractionTriggerMan : MonoBehaviour
                 {
                     case 0:
                         #region 纸条
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
-                        Invoke("CanMove", 1f);
+                        WaitFor(2f);
                         GetSomething("纸条");
                         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                         {
@@ -168,8 +167,7 @@ public class InteractionTriggerMan : MonoBehaviour
                     case 4:
                         #region 电线开关
                         m_AudioSourceController.Play("开关", transform);
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
+                        WaitFor(8f);
                         GameObject.Find("TrackCameraController-ElectricWire").GetComponent<TrackCameraController>().StartMove();
                         m_AudioSourceController.Play("电流", transform);
                         transform.GetChild(1).gameObject.SetActive(false);
@@ -186,7 +184,6 @@ public class InteractionTriggerMan : MonoBehaviour
                         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                         {
                             GameObject.Find("TrackCameraController-ElectricWire").GetComponent<TrackCameraController>().Finished();
-                            Invoke("CanMove", 2.4f);
                         }, 5.5f));
                         #endregion
                         break;
@@ -194,9 +191,7 @@ public class InteractionTriggerMan : MonoBehaviour
                         break;
                     case 6:
                         #region 收据
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
-                        Invoke("CanMove", 1f);
+                        WaitFor(1f);
                         GetSomething("收据1");
                         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                         {
@@ -207,9 +202,7 @@ public class InteractionTriggerMan : MonoBehaviour
                         break;
                     case 7:
                         #region 日记
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
-                        Invoke("CanMove", 1f);
+                        WaitFor(1f);
                         GetSomething("日记");
                         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                         {
@@ -222,8 +215,7 @@ public class InteractionTriggerMan : MonoBehaviour
                         if (GameObject.Find("BackpackUI").GetComponent<BackpackUI>().HasItem("瓶装水"))
                         {
                             GetComponent<Collider2D>().enabled = false;
-                            InputController.BanButton(true);
-                            InputController.BanMouse(true);
+                            WaitFor(15.5f);
                             LoseSomething("瓶装水");
                             m_AudioSourceController.Play("倒水", transform);
                             zimu.Show("希望它可以快快发芽。");
@@ -235,17 +227,12 @@ public class InteractionTriggerMan : MonoBehaviour
                                 {
                                     zimu.Show("好像有一本日记。");
                                     transform.parent.Find("日记Trigger").gameObject.SetActive(true);
-                                    StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
-                                    {
-                                        CanMove();
-                                    }, 2f));
                                 }, 10.5f));
                             }, 3f));
                         }
                         else
                         {
-                            InputController.BanMouse(true);
-                            InputController.BanButton(true);
+                            WaitFor(9f);
                             LoseSomething("种子");
                             zimu.Show("种子已经种下了，或许需要给它浇浇水。");
                             StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
@@ -254,7 +241,6 @@ public class InteractionTriggerMan : MonoBehaviour
                                 StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                                 {
                                     GameObject.Find("TrackCameraController-Water").GetComponent<TrackCameraController>().Finished();
-                                    Invoke("CanMove", 2f);
                                 }, 5f));
                             }, 2f));
                         }
@@ -262,21 +248,14 @@ public class InteractionTriggerMan : MonoBehaviour
                         break;
                     case 9:
                         #region 瓶装水
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
-                        Invoke("CanMove", 1f);
+                        WaitFor(1f);
                         GetSomething("瓶装水");
                         GameObject.Find("BackpackUI").GetComponent<BackpackUI>().AddItem("瓶装水");
-                        /*Collider2D[] waterColliders = transform.parent.GetComponentsInChildren<Collider2D>();
-                        foreach (Collider2D water in waterColliders){
-                            water.enabled = false;
-                        }*/
-                        #endregion
+                       #endregion
                         break;
                     case 10:
                         #region 种子
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
+                        WaitFor(9f);
                         GetSomething("种子");
                         GameObject.Find("BackpackUI").GetComponent<BackpackUI>().AddItem("种子");
                         zimu.Show("捡到了一颗种子，要找个地方把它种下。");
@@ -286,18 +265,14 @@ public class InteractionTriggerMan : MonoBehaviour
                             StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                             {
                                 GameObject.Find("TrackCameraController-FlowerPot").GetComponent<TrackCameraController>().Finished();
-                                Invoke("CanMove", 2f);
                                 transform.parent.Find("花盆Trigger").GetComponent<Collider2D>().enabled = true;
                             }, 5f));
-
                         }, 2f));
-                        
                         #endregion
                         break;
                     case 11:
                         #region 收音机
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
+                        WaitFor(9f);
                         GetSomething("收音机");
                         GameObject.Find("BackpackUI").GetComponent<BackpackUI>().AddItem("收音机");
                         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
@@ -314,9 +289,7 @@ public class InteractionTriggerMan : MonoBehaviour
                         break;
                     case 12:
                         #region 电池
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
-                        Invoke("CanMove", 1f);
+                        WaitFor(1f);
                         GetSomething("电池");
                         GameObject.Find("BackpackUI").GetComponent<BackpackUI>().AddItem("电池");
                         #endregion
@@ -327,9 +300,7 @@ public class InteractionTriggerMan : MonoBehaviour
                         break;
                     case 14:
                         #region 炸弹
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
-                        Invoke("CanMove", 1f);
+                        WaitFor(1f);
                         GetSomething("炸弹");
                         GameObject.Find("BackpackUI").GetComponent<BackpackUI>().AddItem("炸弹");
                         zimu.Show("一捆炸药！");
@@ -340,13 +311,11 @@ public class InteractionTriggerMan : MonoBehaviour
                         //水坑没水
                         if (!transform.parent.Find("水坑Trigger/GetObject").GetChild(3).gameObject.activeInHierarchy)
                         {
-                            InputController.BanButton(true);
-                            InputController.BanMouse(true);
+                            WaitFor(7f);
                             GameObject.Find("TrackCameraController-Pool2").GetComponent<TrackCameraController>().StartMove();
                             StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                             {
                                 GameObject.Find("TrackCameraController-Pool2").GetComponent<TrackCameraController>().Finished();
-                                Invoke("CanMove", 2f);
                                 StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                                 {
                                     zimu.Show("电线断了...");
@@ -362,13 +331,11 @@ public class InteractionTriggerMan : MonoBehaviour
                         //水坑有水但是么有摆炸弹
                         else
                         {
-                            InputController.BanButton(true);
-                            InputController.BanMouse(true);
+                            WaitFor(7f);
                             GameObject.Find("TrackCameraController-Wall").GetComponent<TrackCameraController>().StartMove();
                             StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                             {
                                 GameObject.Find("TrackCameraController-Wall").GetComponent<TrackCameraController>().Finished();
-                                Invoke("CanMove", 2f);
                                 StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                                 {
                                     m_AudioSourceController.Play("电流", transform);
@@ -384,27 +351,28 @@ public class InteractionTriggerMan : MonoBehaviour
                         if (GameObject.Find("BackpackUI").GetComponent<BackpackUI>().HasItem("瓶装水"))
                         {
                             m_AudioSourceController.Play("倒水", transform);
-                            InputController.BanButton(true);
-                            InputController.BanMouse(true);
                             LoseSomething("瓶装水");
                             GameObject.Find("TrackCameraController-Pool").GetComponent<TrackCameraController>().StartMove();
                             Transform pool = get_object.transform;
+                            InputController.BanButton(true);
+                            InputController.BanMouse(true);
                             StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                             {
                                 if (!pool.GetChild(1).gameObject.activeInHierarchy)
                                 {
                                     Initial();
+                                    WaitFor(5f);
                                     pool.GetChild(1).GetComponent<ShowAndHide>().Show(3f);
                                     StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                                     {
                                         GameObject.Find("TrackCameraController-Pool").GetComponent<TrackCameraController>().Finished();
                                         zimu.Show("还需要更多的水。");
-                                        
                                     }, 3f));
                                 }
                                 else if (!pool.GetChild(2).gameObject.activeInHierarchy)
                                 {
                                     Initial();
+                                    WaitFor(5f);
                                     pool.GetChild(2).GetComponent<ShowAndHide>().Show(3f);
                                     StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                                     {
@@ -414,6 +382,7 @@ public class InteractionTriggerMan : MonoBehaviour
                                 }
                                 else if (!pool.GetChild(3).gameObject.activeInHierarchy)
                                 {
+                                    WaitFor(11f);
                                     pool.GetChild(3).GetComponent<ShowAndHide>().Show(3f);
                                     StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                                     {
@@ -429,7 +398,6 @@ public class InteractionTriggerMan : MonoBehaviour
                                             {
                                                 GameObject.Find("TrackCameraController-ElectricityBox2").GetComponent<TrackCameraController>().Finished();
                                                 zimu.Show("只要再把电源打开。。。");
-                                                Invoke("CanMove", 2f);
                                             }, 3f));
                                         }, 3f));
                                     }, 3f));
@@ -439,12 +407,8 @@ public class InteractionTriggerMan : MonoBehaviour
                         //包里没水
                         else
                         {
-                            InputController.BanButton(true);
-                            InputController.BanMouse(true);
+                            WaitFor(2f);
                             zimu.Show("或许可以想办法把这个水坑填满。");
-                            StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
-                                CanMove();
-                            }, 2f));
                         }
                         #endregion
                         break;
@@ -453,12 +417,7 @@ public class InteractionTriggerMan : MonoBehaviour
                         //包里没炸弹
                         if (!GameObject.Find("BackpackUI").GetComponent<BackpackUI>().HasItem("炸弹"))
                         {
-                            InputController.BanButton(true);
-                            InputController.BanMouse(true);
-                            zimu.Show("或许可以想办法把这个水坑填满。");
-                            StartCoroutine(DelayToInvoke.DelayToInvokeDo(() => {
-                                CanMove();
-                            }, 2f));
+                            WaitFor(2f);
                             zimu.Show("这面墙快塌了，要是有炸药什么的应该可以炸开吧。");
                             return;
                         }
@@ -475,13 +434,11 @@ public class InteractionTriggerMan : MonoBehaviour
                         }
                         //包里有炸弹但电路不通
                         get_object.GetComponent<ShowAndHide>().Show(2f);
-                        InputController.BanButton(true);
-                        InputController.BanMouse(true);
+                        WaitFor(7f);
                         GameObject.Find("TrackCameraController-ElectricityBox").GetComponent<TrackCameraController>().StartMove();
                         StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                         {
                              GameObject.Find("TrackCameraController-ElectricityBox").GetComponent<TrackCameraController>().Finished();
-                             Invoke("CanMove", 2f);
                              StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
                              {
                                  zimu.Show("电线断了...");
@@ -494,6 +451,17 @@ public class InteractionTriggerMan : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void WaitFor(float wait_time)
+    {
+        InputController.BanButton(true);
+        InputController.BanMouse(true);
+        StartCoroutine(DelayToInvoke.DelayToInvokeDo(() =>
+        {
+            InputController.BanButton(false);
+            InputController.BanMouse(false);
+        }, wait_time));
     }
 
     private void GetSomething(string name)
@@ -535,12 +503,5 @@ public class InteractionTriggerMan : MonoBehaviour
             cameraController.camera_man = camera_chair;
             Physics2D.IgnoreCollision(character_chair.GetComponent<Collider2D>(), cameraController.character_dog.GetComponent<Collider2D>(), true);
         }, 2f));
-        
-    }
-
-    private void CanMove()
-    {
-        InputController.BanButton(false);
-        InputController.BanMouse(false);
     }
 }

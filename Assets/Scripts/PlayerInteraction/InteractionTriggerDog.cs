@@ -29,7 +29,7 @@ public class InteractionTriggerDog : MonoBehaviour
                     GameObject.Find("MouseCursor").GetComponent<MouseCursorController>().EnterPointPlane();
                     m_AudioSourceController = AudioSourcesManager.ApplyAudioSourceController();
                     m_AudioSourceController.Play("开关门", transform);
-                    GetComponent<Collider2D>().isTrigger=true;
+                    GetComponent<Collider2D>().enabled=false;
                     transform.parent.Find("Gate").gameObject.SetActive(false);
                     InputController.BanMouse(true);
                     InputController.BanButton(true);
@@ -76,7 +76,10 @@ public class InteractionTriggerDog : MonoBehaviour
         if (interaction_type == 2)
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>(), true);
-            Physics2D.IgnoreCollision(transform.GetChild(0).GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>(), true);
+        }
+        if (interaction_type == 3)
+        {
+            Physics2D.IgnoreCollision(transform.parent.GetChild(2).GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>(), true);
         }
     }
 
@@ -134,7 +137,8 @@ public class InteractionTriggerDog : MonoBehaviour
                     if (m_dog.GetComponent<PlayerActions>().GetInteraction() && !action_finished)
                     {
                         GetSomething("零件");
-                        GameObject.Find("箱子").GetComponent<Collider2D>().isTrigger = true;
+                        GameObject.Find("箱子").GetComponent<Collider2D>().enabled=false;
+                        transform.parent.GetChild(2).GetComponent<Collider2D>().enabled=false;
                         GameObject.Find("BackpackUI").GetComponent<BackpackUI>().AddItem("零件");
                         GameObject.Find("MouseCursor").GetComponent<MouseCursorController>().EnterPointPlane();
                         zimu.Show("拿到了零件！可以修理一下轮椅了。");
